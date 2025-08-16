@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>🩺 Breast Cancer Prediction System</h1>
+    <p>Machine Learning powered tumor classification (Benign / Malignant)</p>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab(event, 'manual')">Manual Entry</button>
+      <button class="tab-btn" onclick="openTab(event, 'csv')">CSV Upload</button>
+    </div>
+
+    <!-- Manual Entry Tab -->
+    <div id="manual" class="tab-content active">
+      <form id="cancerForm">
+        <h2>Enter Cell Nuclei Features</h2>
+        
+        <div class="section">
+          <h3>Mean Values</h3>
+          <div class="grid">
+            <div class="form-row">
+              <label>Radius Mean</label>
+              <input type="number" step="any" name="radius_mean" placeholder="e.g., 14.127" required>
+            </div>
+            <div class="form-row">
+              <label>Texture Mean</label>
+              <input type="number" step="any" name="texture_mean" placeholder="e.g., 19.26" required>
+            </div>
+            <div class="form-row">
+              <label>Perimeter Mean</label>
+              <input type="number" step="any" name="perimeter_mean" placeholder="e.g., 91.97" required>
+            </div>
+            <div class="form-row">
+              <label>Area Mean</label>
+              <input type="number" step="any" name="area_mean" placeholder="e.g., 654.9" required>
+            </div>
+            <div class="form-row">
+              <label>Smoothness Mean</label>
+              <input type="number" step="any" name="smoothness_mean" placeholder="e.g., 0.096" required>
+            </div>
+            <div class="form-row">
+              <label>Compactness Mean</label>
+              <input type="number" step="any" name="compactness_mean" placeholder="e.g., 0.104" required>
+            </div>
+            <div class="form-row">
+              <label>Concavity Mean</label>
+              <input type="number" step="any" name="concavity_mean" placeholder="e.g., 0.089" required>
+            </div>
+            <div class="form-row">
+              <label>Concave Points Mean</label>
+              <input type="number" step="any" name="concave_points_mean" placeholder="e.g., 0.049" required>
+            </div>
+            <div class="form-row">
+              <label>Symmetry Mean</label>
+              <input type="number" step="any" name="symmetry_mean" placeholder="e.g., 0.181" required>
+            </div>
+            <div class="form-row">
+              <label>Fractal Dimension Mean</label>
+              <input type="number" step="any" name="fractal_dimension_mean" placeholder="e.g., 0.0628" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Standard Error Values</h3>
+          <div class="grid">
+            <div class="form-row">
+              <label>Radius SE</label>
+              <input type="number" step="any" name="radius_se" placeholder="e.g., 0.405" required>
+            </div>
+            <div class="form-row">
+              <label>Texture SE</label>
+              <input type="number" step="any" name="texture_se" placeholder="e.g., 1.217" required>
+            </div>
+            <div class="form-row">
+              <label>Perimeter SE</label>
+              <input type="number" step="any" name="perimeter_se" placeholder="e.g., 2.868" required>
+            </div>
+            <div class="form-row">
+              <label>Area SE</label>
+              <input type="number" step="any" name="area_se" placeholder="e.g., 40.34" required>
+            </div>
+            <div class="form-row">
+              <label>Smoothness SE</label>
+              <input type="number" step="any" name="smoothness_se" placeholder="e.g., 0.007" required>
+            </div>
+            <div class="form-row">
+              <label>Compactness SE</label>
+              <input type="number" step="any" name="compactness_se" placeholder="e.g., 0.025" required>
+            </div>
+            <div class="form-row">
+              <label>Concavity SE</label>
+              <input type="number" step="any" name="concavity_se" placeholder="e.g., 0.032" required>
+            </div>
+            <div class="form-row">
+              <label>Concave Points SE</label>
+              <input type="number" step="any" name="concave_points_se" placeholder="e.g., 0.012" required>
+            </div>
+            <div class="form-row">
+              <label>Symmetry SE</label>
+              <input type="number" step="any" name="symmetry_se" placeholder="e.g., 0.020" required>
+            </div>
+            <div class="form-row">
+              <label>Fractal Dimension SE</label>
+              <input type="number" step="any" name="fractal_dimension_se" placeholder="e.g., 0.003" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Worst Values</h3>
+          <div class="grid">
+            <div class="form-row">
+              <label>Radius Worst</label>
+              <input type="number" step="any" name="radius_worst" placeholder="e.g., 16.27" required>
+            </div>
+            <div class="form-row">
+              <label>Texture Worst</label>
+              <input type="number" step="any" name="texture_worst" placeholder="e.g., 26.22" required>
+            </div>
+            <div class="form-row">
+              <label>Perimeter Worst</label>
+              <input type="number" step="any" name="perimeter_worst" placeholder="e.g., 108.9" required>
+            </div>
+            <div class="form-row">
+              <label>Area Worst</label>
+              <input type="number" step="any" name="area_worst" placeholder="e.g., 858.1" required>
+            </div>
+            <div class="form-row">
+              <label>Smoothness Worst</label>
+              <input type="number" step="any" name="smoothness_worst" placeholder="e.g., 0.133" required>
+            </div>
+            <div class="form-row">
+              <label>Compactness Worst</label>
+              <input type="number" step="any" name="compactness_worst" placeholder="e.g., 0.253" required>
+            </div>
+            <div class="form-row">
+              <label>Concavity Worst</label>
+              <input type="number" step="any" name="concavity_worst" placeholder="e.g., 0.251" required>
+            </div>
+            <div class="form-row">
+              <label>Concave Points Worst</label>
+              <input type="number" step="any" name="concave_points_worst" placeholder="e.g., 0.132" required>
+            </div>
+            <div class="form-row">
+              <label>Symmetry Worst</label>
+              <input type="number" step="any" name="symmetry_worst" placeholder="e.g., 0.29" required>
+            </div>
+            <div class="form-row">
+              <label>Fractal Dimension Worst</label>
+              <input type="number" step="any" name="fractal_dimension_worst" placeholder="e.g., 0.08" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="predict">🔍 Predict</button>
+          <button type="reset" class="clear">🗑 Clear</button>
+          <button type="button" class="sample" onclick="loadSampleData()">📋 Load Sample Data</button>
+        </div>
+      </form>
+      <div id="manualResult"></div>
+    </div>
+
+    <!-- CSV Upload Tab -->
+    <div id="csv" class="tab-content">
+      <h2>Upload CSV File</h2>
+      <div class="upload-area">
+        <form id="csvForm" enctype="multipart/form-data">
+          <div class="file-input-wrapper">
+            <input type="file" id="fileInput" name="file" accept=".csv" required>
+            <label for="fileInput" class="file-label">
+              <span>📂 Choose CSV File</span>
+              <small>or drag and drop here</small>
+            </label>
+          </div>
+          <div class="buttons">
+            <button type="submit" class="predict">📊 Upload & Predict</button>
+          </div>
+        </form>
+      </div>
+      <div id="csvResult"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

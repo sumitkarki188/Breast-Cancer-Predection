@@ -23,7 +23,7 @@
       <form id="cancerForm">
         <h2>Enter Cell Nuclei Features</h2>
         
-        <div class="section">
+        <div class="feature-section">
           <h3>Mean Values</h3>
           <div class="grid">
             <div class="form-row">
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="feature-section">
           <h3>Standard Error Values</h3>
           <div class="grid">
             <div class="form-row">
@@ -115,7 +115,7 @@
           </div>
         </div>
 
-        <div class="section">
+        <div class="feature-section">
           <h3>Worst Values</h3>
           <div class="grid">
             <div class="form-row">
@@ -164,33 +164,50 @@
         <div class="buttons">
           <button type="submit" class="predict">🔍 Predict</button>
           <button type="reset" class="clear">🗑 Clear</button>
-          <button type="button" class="sample" onclick="loadSampleData()">📋 Load Sample Data</button>
+          <button type="button" class="sample" onclick="loadSampleData()">📋 Load Sample</button>
         </div>
       </form>
       <div id="manualResult"></div>
     </div>
 
-    <!-- CSV Upload Tab -->
-    <div id="csv" class="tab-content">
-      <h2>Upload CSV File</h2>
-      <div class="upload-area">
-        <form id="csvForm" enctype="multipart/form-data">
-          <div class="file-input-wrapper">
-            <input type="file" id="fileInput" name="file" accept=".csv" required>
-            <label for="fileInput" class="file-label">
-              <span>📂 Choose CSV File</span>
-              <small>or drag and drop here</small>
-            </label>
-          </div>
-          <div class="buttons">
-            <button type="submit" class="predict">📊 Upload & Predict</button>
-          </div>
-        </form>
-      </div>
-      <div id="csvResult"></div>
-    </div>
-  </div>
 
+    <!-- CSV Upload Tab -->
+<div id="csv" class="tab-content">
+  <h2>Upload CSV File</h2>
+  <div class="upload-info">
+  <p><strong>Upload a CSV file with breast cancer features</strong></p>
+  <div class="column-info">
+    <h4>✅ Smart Feature Detection:</h4>
+    <ul>
+      <li>✅ Automatically detects how many features your model needs</li>
+      <li>✅ Excludes non-feature columns (id, diagnosis, etc.)</li>
+      <li>✅ Uses first N numeric columns if named matching fails</li>
+      <li>✅ Handles CSVs with extra columns</li>
+    </ul>
+    
+    <h4>📊 Your Model Info:</h4>
+    <p><strong>Expected Features:</strong> <span id="expectedFeatures">Loading...</span></p>
+  </div>
+</div>
+
+  
+  <form id="csvForm" enctype="multipart/form-data">
+    <div class="file-upload">
+      <input type="file" name="file" id="csvFile" accept=".csv" required>
+      <label for="csvFile" class="file-label">
+        <div class="upload-icon">📂</div>
+        <span id="fileName">Choose CSV file...</span>
+        <small>Supports CSV with extra columns - we'll use only the required 30!</small>
+      </label>
+    </div>
+    <div class="buttons">
+      <button type="submit" class="predict">📊 Upload & Predict</button>
+    </div>
+  </form>
+  <div id="csvResult"></div>
+</div>
+
+  <!-- Load JavaScript file -->
   <script src="/static/script.js"></script>
 </body>
 </html>
